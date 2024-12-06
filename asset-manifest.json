@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Ermila27.github.io/netflix-clone/static/css/main.b4663a7b.css",
+    "main.js": "/Ermila27.github.io/netflix-clone/static/js/main.bfc3f121.js",
+    "static/js/453.ac37c5d0.chunk.js": "/Ermila27.github.io/netflix-clone/static/js/453.ac37c5d0.chunk.js",
+    "static/media/logo.png": "/Ermila27.github.io/netflix-clone/static/media/logo.73095284cd79acda4276.png",
+    "index.html": "/Ermila27.github.io/netflix-clone/index.html",
+    "main.b4663a7b.css.map": "/Ermila27.github.io/netflix-clone/static/css/main.b4663a7b.css.map",
+    "main.bfc3f121.js.map": "/Ermila27.github.io/netflix-clone/static/js/main.bfc3f121.js.map",
+    "453.ac37c5d0.chunk.js.map": "/Ermila27.github.io/netflix-clone/static/js/453.ac37c5d0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4663a7b.css",
+    "static/js/main.bfc3f121.js"
+  ]
+}
