@@ -1,18 +1,32 @@
-import React from 'react'
+import React from 'react';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <div className='relative bg-black border  p-3 shadow-lg '>
-     <div className='h-70 text-center   justify-center items-center text-xl capitalize text-white'>
-      <h2 className='border-solid border-b-4 border-red-500 border-l-2 sm:absolute top-10  ml-5'>project name :Building Netflix Clone</h2>
-    
-      <button class= " shadow-lg shadow-red-400 text-red-500 bg-black border-2 border-solid border-white font-semibold py-2 px-12 rounded hover:bg-red-600 focus:outline-none focus:ring-2 hover:text-white focus:ring-blue-300 m-8">
-   visit in githu1
-</button>
-
-      <h3>Ermias Getnet</h3>
-<h3> &copy;AlL Right Reseved</h3>
-     </div>
-     </div>
-  )
+    <footer className="bg-black text-white py-8">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="text-center md:text-left mb-4 md:mb-0">
+            <h2 className="text-2xl font-bold">Netflix Clone</h2>
+            <p className="text-gray-400">Built with React and Tailwind CSS</p>
+          </div>
+          <div className="flex gap-4">
+            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <FaGithub size={24} />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <FaLinkedin size={24} />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
+              <FaTwitter size={24} />
+            </a>
+          </div>
+        </div>
+        <div className="text-center text-gray-500 mt-8">
+          <p>&copy; {new Date().getFullYear()} Ermias Getnet. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
 }
+

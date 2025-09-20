@@ -4,13 +4,17 @@ import axios from '../../../utils/axios'
 import { useRef } from 'react'
 import YouTube from 'react-youtube'
 import movieTrailer from "movie-trailer";
-import { getToolbarUtilityClass } from '@mui/material'
-const Row = (props) => {
+import TrailerModal from '../../TrailerModal';
+
+const Row = React.forwardRef((props, ref) => {
     const [movie,setMovie]=useState([]);
     const baseurl="https://image.tmdb.org/t/p/w1280" 
     const[trailerUrl,seturl]=useState('');
     const [isloading ,setIsloadig]=useState(true)
     const[trailervisible,settrailervisible]=useState(false)
+    const [showMore, setShowMore] = useState(false);
+
+    const visibleMovies = showMore ? movie : movie.slice(0, 6);
     const mydiv=useRef([]);
 
     const handleclick = (singleMovie) => {
@@ -60,39 +64,57 @@ const fech= async ()=> {
 
   // }
   return (
-    <div className='bg-black text-white '>
+    <div className='bg-black text-white ' ref={ref} name={props.title}>
 
 
       <h1 className='text-xl font-semibold ml-5 uppercase p-4 '>{props.title}</h1>
-       {movie && <div className='bg-black flex overflow-x-auto gap-1 '   style={{
-      scrollbarWidth: "none", // Firefox
-      msOverflowStyle: "none", // IE and Edge
-    }}>
-        
-        {movie.map((x,index)=>(
- <div key={index} ref={(el)=>(mydiv.current[index]=el)}
- className=' m-5  flex-shrink-0 transform transition-transform duration-500 ease-in-out hover:scale-110'>  <img className={`${props.islarge?'h-72':'h-32'}`} src={`${baseurl}${props.islarge?x.poster_path:x.backdrop_path }`} />
-<h1 className='text-white bg-black text-center'>{x.title}</h1> <button className=' text-red-600 text-center rounded  '  onClick={()=>{
-  handleclick(x)
- }} >playtrailer</button>
+       {movie && (
+        <>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {visibleMovies.map((x, index) => (
+              <div
+                key={index}
+                ref={(el) => (mydiv.current[index] = el)}
+                className="m-5 flex-shrink-0 transform transition-transform duration-500 ease-in-out hover:scale-110"
+              >
+                <img
+                  className={`${
+                    props.islarge ? "h-72" : "h-32"
+                  } w-full object-cover`}
+                  src={`${baseurl}${
+                    props.islarge ? x.poster_path : x.backdrop_path
+                  }`}
+                  alt={x.title}
+                />
+                <h1 className="text-white bg-black text-center">{x.title}</h1>
+                <button
+                  className="text-red-600 text-center rounded"
+                  onClick={() => {
+                    handleclick(x);
+                  }}
+                >
+                  Play Trailer
+                </button>
+              </div>
+            ))}
+          </div>
+          {movie.length > 6 && (
+            <div className="text-center">
+              <button
+                className="bg-red-600 text-white px-4 py-2 rounded mt-4"
+                onClick={() => setShowMore(!showMore)}
+              >
+                {showMore ? "See Less" : "See More"}
+              </button>
+            </div>
+          )}
+        </>
+      )}
 
-
- </div>
-))   }
-
-        </div>}
-
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-        {trailervisible ? <div className='bg-red-500 text-black p-1 rounded w-40 text-center ml-4'><button onClick={()=>{
-          seturl("");
-          settrailervisible(false);
-
-
-
-         }}>close trailer <span className='font-extrabold '>x</span></button></div>:<div></div> }
+        {trailerUrl && <TrailerModal trailerUrl={trailerUrl} handleClose={() => seturl('')} />}
 
     </div>
   )
-}
+})
 
 export default Row

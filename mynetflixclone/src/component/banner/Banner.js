@@ -36,38 +36,47 @@ function Banner() {
   const link= `https://image.tmdb.org/t/p/w1280${movie[random].backdrop_path} ` 
 
   return (
-    <div className='bg-red-400'style={{backgroundImage:`url(${link})`}} >
-     {movie &&
-       <div className=' h-[60vh] flex justify-center items-center text-white w-full  ' style={{backgroundImage:`url(${link})`}}>
-        <div className='  '>
-        <h1 class=" font-extrabold text-2xl ">Unlimited movies, <br/> 
-        TV shows, and more</h1>  
-        <button class="text-red-500 bg-black font-semibold py-2 px-12 rounded hover:bg-red-600 focus:outline-none focus:ring-2 hover:text-white focus:ring-blue-300 m-8">
-  play
-</button>
-
-     </div>
+    <div
+      className="h-screen bg-cover bg-center flex items-center justify-center text-white"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url(${link})`,
+      }}
+    >
+      {movie && (
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
+            {movie[random].title}
+          </h1>
+          <p className="text-lg md:text-xl mb-8">
+            {movie[random].overview}
+          </p>
+          <button className="bg-red-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors duration-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 inline-block mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Play
+          </button>
         </div>
-       
-     } 
-
-    
-<div className='grid grid-cols-4 gap-3'>
-{/* { movie.length>0?( 
-movie.map((x,index)=>( 
-  <div key={index}>
-  <h2 className='text-blue-700'>{x.name}</h2>
-  <img src={`${baseurl}${x.backdrop_path}`}/>
-  <div className='bg-blue-600 rounded-full text-center p-1 text-white'>{x.popularity}</div>
-  </div>
-))):<div>no video found</div>} */}
-
-</div>
-
-     
+      )}
     </div>
-   
-  )
+  );
   
 }
 
